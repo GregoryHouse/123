@@ -1,0 +1,197 @@
+/** Nav Bar **/
+.nav > li {
+  width: 200px;
+  margin-left: 200px;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1370px;
+  }
+}
+
+/**Links**/
+a:hover {
+  cursor: pointer;
+  color: purple;
+}
+
+a {
+  color: darkblue;
+}
+
+/** User table **/
+li.title, .user-content, .new-user, .company-content, .new-company {
+  margin: auto;
+  list-style-type: none;
+  height: 40px;
+  width: 1300px;
+  text-align: center;
+  border-bottom: 1px dotted gray;
+}
+
+form {
+  list-style-type: none;
+}
+
+li.title {
+  background-color: lightgray;
+}
+
+div.add-user, .add-company {
+  width: 50px;
+  margin-left: 1183px;
+}
+
+li.new-user, .new-company {
+  margin-top: 8px;
+}
+
+li.new-user.edit, li.new-company.edit {
+  margin: 0 0 8px 0;
+}
+
+li.user-content, li.company-content {
+  margin-top: 8px;
+}
+
+li.edit {
+  height: 85px;
+}
+
+li.user-content.edit, li.company-content.edit {
+  margin: 0 0 8px 0;
+}
+
+.companies-content li div div form div.form-group {
+  width: 190px;
+}
+
+/** Form **/
+li.edit div form {
+
+  height: 75px;
+  box-sizing: border-box;
+  padding: 1px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .45);
+}
+
+li.edit div form div {
+  width: 165px;
+  padding: 5px;
+  margin: 0 10px 0 10px;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
+input.popover-input {
+  border: none;
+}
+
+/** Form error **/
+li.edit div form div div.span-error {
+  width: 176px;
+  margin-left: 0;
+  padding: 0px;
+}
+
+li.edit div form div.has-error input {
+  border-color: red;
+}
+
+div.popover h3 {
+  text-align: center;
+  position: relative;
+  background-color: bisque;
+  font-size: 22px;
+  margin: 5px;
+}
+
+div.popover div {
+  position: relative;
+  margin: auto;
+  padding: 5px;
+  text-align: center;
+  border-top: 1px dotted gray;
+}
+
+div.popover {
+  max-width: 300px;
+  height: 170px;
+  overflow-y: scroll;
+  border-radius: 10px;
+  background-color: ivory;
+  box-sizing: border-box;
+  box-shadow: -9px 12px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/** Buttons **/
+li.edit div form div.buttons {
+  width: 150px;
+  margin: 14px 0 0 20px;
+  text-align: center;
+}
+
+li.edit div form div.companies-buttons {
+  width: 150px;
+  margin: 20px 0 0 20px;
+  text-align: center;
+}
+
+input[type="button"] {
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+input.button-save {
+  background: url("../images/add.gif") no-repeat;
+  height: 30px;
+  width: 30px;
+}
+
+input.button-close {
+  background: url("../images/close.jpg") no-repeat;
+  height: 27px;
+  width: 30px;
+}
+
+.button-save:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/**  Sort triangle **/
+.sort-order:after {
+  content: '\25bc';
+}
+
+.sort-order.reverse:after {
+  content: '\25b2';
+}
+
+/** Errors **/
+input.has-error {
+  border-color: red;
+}
+
+/** Dropdown **/
+.form-control.select {
+  height: 27px;
+  width: 174px;
+  padding: 0;
+  border-radius: 0;
+  border: 1px solid initial;
+}

@@ -1,0 +1,65 @@
+<div ng-controller="myApp.Companies.editCompaniesCtrl">
+  <form name="editCompanyForm">
+
+    <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-class="{'has-error': isShowErrors(editCompanyForm, 'name')}">
+
+      <span ng-hide="isShowErrors(editCompanyForm, 'name')">Company Name</span>
+
+      <div class="span-error" ng-messages="editCompanyForm.name.$error"
+           ng-show="isShowErrors(editCompanyForm, 'name')">
+        <span ng-message="required">Company Name is required</span>
+        <span ng-message="minlength">Company Name is too short</span>
+        <span ng-message="maxlength">Company Name is too long</span>
+      </div>
+
+      <input name="name" size="20" placeholder="Company Name"
+             ng-model="editCompany.name" ng-required="true" ng-minlength="3" ng-maxlength="10" class="company-name">
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-class="{'has-error': isShowErrors(editCompanyForm, 'addressCompany')}">
+
+      <span ng-hide="isShowErrors(editCompanyForm, 'addressCompany')">Address Company</span>
+
+      <div class="span-error" ng-messages="editCompanyForm.addressCompany.$error"
+           ng-show="isShowErrors(editCompanyForm, 'addressCompany')">
+        <span ng-message="maxlength">Address Company is too long</span>
+      </div>
+
+      <input name="addressCompany" size="20" placeholder="Address Company" ng-model="editCompany.addressCompany">
+    </div>
+
+    <div class="form-group col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-class="{'has-error': isShowErrors(editCompanyForm, 'companyMail')}">
+
+      <span ng-hide="isShowErrors(editCompanyForm, 'companyMail')">Company Mail</span>
+
+      <div class="span-error" ng-messages="editCompanyForm.companyMail.$error" ng-show="isShowErrors(editCompanyForm, 'companyMail')">
+        <span ng-message="required">Email required</span>
+        <span ng-message="email">Incorrect Email</span>
+        <span ng-message="unique-email">exist</span>
+      </div>
+
+      <input name="companyMail" size="20" placeholder="Company Mail"
+             ng-model="editCompany.companyMail" ng-required="true" class="company-email" type="email">
+    </div>
+
+    <div class="form-group col-lg-2 col-md-6 col-sm-12 col-xs-12">
+      <span>Year Foundation</span>
+      <input date-picker name="yearFoundation" size="20" placeholder="Year Foundation" ng-model="editCompany.yearFoundation">
+    </div>
+
+    <!--<div class="form-group col-lg-5">-->
+      <!--<span>Workers</span>-->
+      <!--<input type="text" name="workers" size="20" placeholder="Workers" ng-model="editCompany.workers">-->
+    <!--</div>-->
+
+    <div class="form-group col-lg-2 col-md-6 col-sm-12 col-xs-12 companies-buttons">
+
+      <a type="button" class="button-save" ng-click="saveCompany(editCompanyForm, editCompany)"
+         ng-disabled="editCompanyForm.name.$dirty && editCompanyForm.name.$invalid || editCompanyForm.companyMail.$dirty && editCompanyForm.companyMail.$invalid">
+        <i class="fa fa-floppy-o fa-2x"></i>
+      </a>
+
+      <a type="button" class="button-close" ng-click="openCompanyForm()"><i class="fa fa-times fa-2x"></i></a>
+    </div>
+  </form>
+</div>
