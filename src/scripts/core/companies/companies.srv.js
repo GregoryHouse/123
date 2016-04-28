@@ -7,7 +7,6 @@
       deleteCompany: deleteCompany,
       getAllCompanies: getAllCompanies,
       getOneCompanyById: getOneCompanyById
-      //unique: unique
     };
 
     function saveUpdateCompany(editCompany, callback) {
@@ -24,7 +23,6 @@
           clients: editCompany.clients
         };
 
-        console.log(company.yearFoundation)
         if(editCompany.id){
           company.id = editCompany.id
         }

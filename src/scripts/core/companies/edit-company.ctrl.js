@@ -7,7 +7,7 @@
     } else {
       $scope.editCompany = CompaniesSrv.getOneCompanyById($scope.editCompanyId, function (resp) {
         $scope.editCompany = angular.copy(resp);
-        $scope.editCompany.yearFoundation = new Date($scope.editCompany.yearFoundation).toLocaleDateString();
+        $scope.editCompany.yearFoundation = $scope.editCompany.yearFoundation? new Date($scope.editCompany.yearFoundation).toLocaleDateString() : "";
       });
     }
 

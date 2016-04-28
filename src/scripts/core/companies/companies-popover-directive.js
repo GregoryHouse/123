@@ -5,9 +5,9 @@
 
       return {
         restrict: 'A',
-        link: function (scope, element, attrs) {
+        link: function (scope, element) {
 
-          $templateRequest('scripts/core/companies/companiesPopoverTemplate.html').then(function (template) {
+          $templateRequest('scripts/core/companies/companies-popover.tpl.html').then(function (template) {
             var compileTemplate = $compile(template)(scope);
 
             $(element).popover({

@@ -42,7 +42,6 @@
             users[j].company = {
               id: companies[randomCompanyIndex].id
             };
-            //companies[randomCompanyIndex].clients.push({id: users[j].id})
           }
 
           resolve(users)
