@@ -86,7 +86,7 @@ div.row.edit-form {
 
   .col-md-6 {
     text-align: left;
-    margin: 10px 0 5px 0;
+    margin: 5px 0 5px 0;
   }
 
   input {
@@ -98,8 +98,8 @@ div.row.edit-form {
   }
 
   .form-group.companies-buttons {
-    margin: 19px 0 0 0;
-    padding-right: 44px;
+    margin: 5px 0 5px 0;
+    padding-right: 38px;
   }
 }
 
@@ -125,7 +125,7 @@ div.row.edit-form {
 
   .form-group.companies-buttons, .users-buttons {
     margin: 19px 0 5px 0;
-    padding-right: 39px;
+    padding-right: 35px;
   }
 }
 
