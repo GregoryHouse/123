@@ -64,36 +64,4 @@
 
 }]);
 
-
-  //angular.module('myApp.Users').directive('uniqueEmail', ["UsersSrv",
-  //  function(UsersSrv,$q) {
-  //    var yes = function(n){
-  //      console.log(UsersSrv.unique(n))
-  //      return UsersSrv.unique(n)
-  //    }
-  //    return {
-  //      restrict: "A",
-  //      require: "ngModel",
-  //      link: function(scope, element, attributes, ngModel) {
-  //        ngModel.$asyncValidators.prime = function(modelValue) {
-  //          //var defer = $q.defer();
-  //          //$timeout(function(){
-  //            if(yes(modelValue)) {
-  //              //defer.resolve();
-  //              console.log(yes(modelValue))
-  //
-  //            } else {
-  //              //defer.reject();
-  //              console.log(modelValue)
-  //
-  //            }
-  //          //}, 2000);
-  //          //return defer.promise;
-  //        }
-  //      }
-  //    };
-  //  }
-  //]);
-
-
 }());

@@ -2,8 +2,7 @@
   <div class="row edit-form">
     <form name="editCompanyForm">
 
-
-      <div class="form-group col-xs-6 col-sm-6 col-md-4 col-lg-2 text-left"
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-2"
            ng-class="{'has-error': isShowErrors(editCompanyForm, 'name')}">
 
         <span ng-hide="isShowErrors(editCompanyForm, 'name')">Company Name</span>
@@ -19,7 +18,7 @@
                ng-model="editCompany.name" ng-required="true" ng-minlength="3" ng-maxlength="10" class="company-name">
       </div>
 
-      <div class="form-group col-xs-6 col-sm-6 col-md-4 col-lg-3 text-center"
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-3"
            ng-class="{'has-error': isShowErrors(editCompanyForm, 'addressCompany')}">
 
         <span ng-hide="isShowErrors(editCompanyForm, 'addressCompany')">Address Company</span>
@@ -32,7 +31,7 @@
         <input name="addressCompany" size="20" placeholder="Address Company" ng-model="editCompany.addressCompany">
       </div>
 
-      <div class="form-group col-xs-6 col-sm-6 col-md-4 col-lg-2 text-center"
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-2"
            ng-class="{'has-error': isShowErrors(editCompanyForm, 'companyMail')}">
 
         <span ng-hide="isShowErrors(editCompanyForm, 'companyMail')">Company Mail</span>
@@ -48,13 +47,13 @@
                ng-model="editCompany.companyMail" ng-required="true" class="company-email" type="email">
       </div>
 
-      <div class="form-group col-xs-6 col-sm-6 col-md-4 col-lg-3 text-center">
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-3">
         <span>Year Foundation</span>
         <input date-picker name="yearFoundation" size="20" placeholder="Year Foundation"
                ng-model="editCompany.yearFoundation">
       </div>
 
-      <div class="form-group col-xs-6 col-sm-6 col-md-4 col-lg-2 companies-buttons text-center">
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-2 companies-buttons">
 
         <button type="button" class="btn btn-success" ng-click="saveCompany(editCompanyForm, editCompany)"
                 ng-disabled="editCompanyForm.name.$dirty && editCompanyForm.name.$invalid || editCompanyForm.companyMail.$dirty && editCompanyForm.companyMail.$invalid">

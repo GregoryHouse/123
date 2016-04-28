@@ -7,7 +7,6 @@
       deleteUser: deleteUser,
       getAllUsers: getAllUsers,
       getOneUserById: getOneUserById,
-      //unique: unique
     };
 
     function saveUpdateUser(editUser, callback) {
@@ -70,16 +69,6 @@
           return resp.data;
         })
     }
-
-    //function unique(userEmail,callback){
-    //  for (var i = 0; i < UsersSrv.users.length; i++) {
-    //    if (UsersSrv.users[i].mail === userEmail) {
-    //      //var user = "This Email already exist";
-    //      return false
-    //    }
-    //  }
-    //  return true
-    //}
 
     return UsersSrv;
   }]);
