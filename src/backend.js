@@ -42,6 +42,8 @@
             users[j].company = {
               id: companies[randomCompanyIndex].id
             };
+
+            companies[randomCompanyIndex].clients.push({id: users[j].id})
           }
 
           resolve(users)
@@ -54,27 +56,12 @@
       initCompany
         .then(initUsers);
 
-
-      function userInCompany() {
-
-        for (var j = 0, l = companies.length; j < l; j++) {
-          companies[j].clients = [];
-
-          for (var m = 0, k = users.length; m < k; m++) {
-            if (companies[j].id === users[m].company.id) {
-              companies[j].clients.push({id: users[m].id});
-            }
-          }
-        }
-      }
-
       $httpBackend.whenGET('/api/companies').respond(function () {
-        userInCompany();
         return [200, companies]
       });
 
-      $httpBackend.whenGET(/^\/api\/companies\/\d+$/).respond(function (method, url, data, headers) {
-        var regex = /^\/api\/companies\/(\d+)/g;
+      $httpBackend.whenGET(/^\/api\/companies\/\d+-\d+-\d+-\d+$/).respond(function (method, url, data, headers) {
+        var regex = /^\/api\/companies\/(\d+-\d+-\d+-\d+)/g;
 
         var id = regex.exec(url)[1];
 
@@ -90,6 +77,9 @@
 
 
       $httpBackend.whenPOST('/api/companies').respond(function (method, url, data, headers) {
+
+        console.log(data)
+
         var company = JSON.parse(data);
         if (company.id) {
           for (var i = 0, l = companies.length; i < l; i++) {
@@ -107,8 +97,8 @@
       });
 
 
-      $httpBackend.whenDELETE(/^\/api\/companies\/\d+$/).respond(function (method, url, data, headers) {
-        var regex = /^\/api\/companies\/(\d+)/g;
+      $httpBackend.whenDELETE(/^\/api\/companies\/\d+-\d+-\d+-\d+$/).respond(function (method, url, data, headers) {
+        var regex = /^\/api\/companies\/(\d+-\d+-\d+-\d+)/g;
 
         var id = regex.exec(url)[1];
 
@@ -128,9 +118,9 @@
         return [200, users];
       });
 
-      $httpBackend.whenGET(/^\/api\/users\/\d+$/).respond(function (method, url, data, headers) {
+      $httpBackend.whenGET(/^\/api\/users\/\d+-\d+-\d+-\d+$/).respond(function (method, url, data, headers) {
 
-        var regex = /^\/api\/users\/(\d+)/g;
+        var regex = /^\/api\/users\/(\d+-\d+-\d+-\d+)/g;
 
         var id = regex.exec(url)[1];
 
@@ -146,24 +136,54 @@
 
 
       $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
+
         var user = JSON.parse(data);
         if (user.id) {
           for (var i = 0, l = users.length; i < l; i++) {
             if (users[i].id === user.id) {
+
+              if (user.company.id !== users[i].company.id) {
+
+                for (var a = 0, n = companies.length; a < n; a++) {
+                  if (users[i].company.id === companies[a].id) {
+
+                    for (var b = 0; b < companies[a].clients.length; b++) {
+
+                      if (users[i].id === companies[a].clients[b].id) {
+                        companies[a].clients.splice(companies[a].clients.indexOf(companies[a].clients[b]),1)
+                        break
+                      }
+                    }
+                  }
+
+                  if (user.company.id === companies[a].id){
+                    companies[a].clients.push({id: user.id})
+                  }
+                }
+              }
+
               users[i] = user;
               break;
             }
           }
         } else {
           user.id = createId();
-          users.push(user)
+          users.push(user);
+
+          for (var j = 0, m = companies.length; j < m; j++) {
+            if (companies[j].id === user.company.id) {
+              companies[j].clients.push({id: user.id})
+            }
+
+          }
+
         }
 
         return [201, user];
       });
 
-      $httpBackend.whenDELETE(/^\/api\/users\/\d+$/).respond(function (method, url, data, headers) {
-        var regex = /^\/api\/users\/(\d+)/g;
+      $httpBackend.whenDELETE(/^\/api\/users\/\d+-\d+-\d+-\d+$/).respond(function (method, url, data, headers) {
+        var regex = /^\/api\/users\/(\d+-\d+-\d+-\d+)/g;
 
         var id = regex.exec(url)[1];
 
@@ -189,7 +209,7 @@
         .substring(1);
     }
 
-    return s4();
+    return s4() + '-' + s4() + '-' + s4() + '-' + s4();
   }
 })();
 

@@ -2,21 +2,20 @@
 (function () {
   angular.module('myApp.Companies').controller("myApp.Companies.companyCtrl", ['$scope', 'UsersSrv', 'CompaniesSrv', function ($scope, UsersSrv, CompaniesSrv) {
 
-    CompaniesSrv.getOneCompanyById($scope.company.id, function (resp) {
+    $scope.clientsInCompany = $scope.company.clients ? $scope.company.clients.length : 0;
 
-      $scope.clientsCompany = resp.clients ? resp.clients.length : 0;
+    $scope.companyUsers = $scope.company.clients? CompaniesSrv.getAllUserByCompany($scope.company.clients) : [];
 
-      $scope.companyClients = resp.clients;
-      $scope.companyUsers = [];
-
-      if($scope.companyClients) {
-        for (var j = 0, l = $scope.companyClients.length; j < l; j++) {
-          UsersSrv.getOneUserById($scope.companyClients[j].id, function (resp) {
-            $scope.companyUsers.push({firstName: resp.firstName, lastName: resp.lastName});
-          });
+    $scope.deleteCompany = function (editCompany) {
+      CompaniesSrv.deleteCompany(editCompany, function (resp) {
+        for (var i = 0; i < $scope.companies.length; i++) {
+          if ($scope.companies[i].id === resp.id) {
+            $scope.companies.splice($scope.companies.indexOf($scope.companies[i]), 1);
+            break;
+          }
         }
-      }
-    });
+      });
+    };
   }])
 
 }());

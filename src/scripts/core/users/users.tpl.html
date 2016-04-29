@@ -3,13 +3,13 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
-        <input type="text" class="form-control" placeholder="Search Name" ng-model="searchName">
+        <input type="text" class="form-control" placeholder="Search Company" ng-model="query">
       </div>
     </div>
   </form>
 
   <li class="new-user row" ng-class="{'edit': editUserId === 'newUser'}">
-    <div ng-include="'scripts/core/users/edit-user-form.tpl.html'" ng-if="editUserId === 'newUser'"></div>
+    <div ng-include="'scripts/core/users/edit-user.tpl.html'" ng-if="editUserId === 'newUser'"></div>
     <div class="add-user text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">
       <a ng-click="openUserForm('newUser')" ng-hide="editUserId === 'newUser'"><i class="fa fa-plus fa-2x"></i></a>
     </div>
@@ -38,10 +38,12 @@
   </li>
 
   <li class="user-content" ng-class="{'edit': editUserId === user.id}" ng-controller="myApp.Users.userCtrl"
-      ng-repeat="user in users  | orderBy: orderUser.predicate: orderUser.reverse | filter: searchName">
+      ng-repeat="user in users  | orderBy: orderUser.predicate: orderUser.reverse | filter: filterUsers">
 
-    <div ng-include="'scripts/core/users/edit-user-form.tpl.html'" ng-if="editUserId === user.id"></div>
+    <div ng-include="'scripts/core/users/edit-user.tpl.html'" ng-if="editUserId === user.id"></div>
+
     <div class="row" ng-hide="editUserId === user.id">
+
       <div class="form-group col-xs-1 col-sm-1 col-md-1 col-lg-1">
         {{ user.firstName }}
       </div>
@@ -60,11 +62,13 @@
       <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-2">
         {{ user.mail }}
       </div>
+
       <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-1 buttons">
         <a class="edit-button" ng-click="openUserForm(user.id)"><i
           class=" fa fa-pencil-square-o fa-2x"></i></a>
-        <a ng-click="deleteUser(user)"><i class="fa fa-trash-o fa-2x"></i></a>
+        <a ng-click="deleteUser()"><i class="fa fa-trash-o fa-2x"></i></a>
       </div>
+
     </div>
   </li>
 </ul>

@@ -2,15 +2,18 @@
 (function () {
   angular.module('myApp.Companies').controller("myApp.Companies.companiesCtrl", ['$scope', 'CompaniesSrv', function ($scope, CompaniesSrv) {
 
+    $scope.query = '';
     $scope.editCompanyId = '';
-    CompaniesSrv.getAllCompanies(function(resp){
-      $scope.companies = resp;
-    });
 
     $scope.orderCompany = {
       predicate: '',
       reverse: false
     };
+
+    CompaniesSrv.getAllCompanies(function(resp){
+      $scope.companies = resp;
+    });
+
 
     $scope.sortCompanies = function (predicate) {
       $scope.orderCompany.reverse = ($scope.orderCompany.predicate === predicate) ? !$scope.orderCompany.reverse : false;
@@ -27,16 +30,17 @@
       }
     };
 
-    $scope.deleteCompany = function (editCompany) {
-      CompaniesSrv.deleteCompany(editCompany, function(resp){
-        for (var i = 0; i < $scope.companies.length; i++) {
-          if ($scope.companies[i].id === resp.id) {
-            $scope.companies.splice($scope.companies.indexOf($scope.companies[i]), 1);
-            break;
-          }
-        }
-      });
+    $scope.filterCompanies = function (company) {
+
+      var query = $scope.query.toLowerCase(),
+        fullName = company.name.toLowerCase() + ' ' + company.addressCompany.toLowerCase() + ' ' + company.companyMail.toLowerCase();
+
+      if (fullName.indexOf(query) !== -1) {
+        return true;
+      }
+      return false;
     };
+
   }]);
 
 }());

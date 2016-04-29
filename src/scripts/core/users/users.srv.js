@@ -6,7 +6,7 @@
       saveUpdateUser: saveUpdateUser,
       deleteUser: deleteUser,
       getAllUsers: getAllUsers,
-      getOneUserById: getOneUserById,
+      getOneUserById: getOneUserById
     };
 
     function saveUpdateUser(editUser, callback) {
@@ -38,9 +38,9 @@
       }
     }
 
-    function deleteUser(removeUser, callback) {
+    function deleteUser(userId, callback) {
 
-      return $http.delete('/api/users/' + removeUser.id)
+      return $http.delete('/api/users/' + userId)
         .then(function success(resp) {
           if(callback){
             callback(resp.data)

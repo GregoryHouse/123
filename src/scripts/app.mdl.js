@@ -5,7 +5,9 @@
     .config([
       '$stateProvider',
       '$urlRouterProvider',
-      function ($stateProvider) {
+      function ($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('/users');
 
         $stateProvider
           .state('users', {
@@ -20,20 +22,5 @@
             templateUrl: 'scripts/core/companies/companies.tpl.html'
           });
       }]);
-
-  angular.module('myApp').directive('datePicker',
-    function () {
-
-      return {
-        restrict: "A,E,C",
-        link: function (scope, element) {
-          $(function () {
-            $(element).datepicker({
-              format: "dd.mm.yyyy"
-            });
-          });
-        }
-      };
-    });
 
 })();

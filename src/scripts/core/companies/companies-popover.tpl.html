@@ -1,7 +1,7 @@
 <div class="popover container">
   <h3>Clients ({{ companyUsers.length }})</h3>
   <div class="content" ng-if="companyUsers.length > 0">
-    <div ng-repeat="user in companyUsers" ng-show="companyUsers.length>0">
+    <div ng-repeat="user in companyUsers">
       {{ user.firstName + ' ' + user.lastName }}
     </div>
   </div>

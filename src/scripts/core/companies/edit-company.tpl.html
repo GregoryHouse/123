@@ -47,10 +47,9 @@
                ng-model="editCompany.companyMail" ng-required="true" class="company-email" type="email">
       </div>
 
-      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-3" date-picker ng-model="editCompany.yearFoundation">
         <span>Year Foundation</span>
-        <input date-picker name="yearFoundation" size="20" placeholder="Year Foundation"
-               ng-model="editCompany.yearFoundation">
+        <input date-picker-input name="yearFoundation" size="20" placeholder="Year Foundation">
       </div>
 
       <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-2 companies-buttons">

@@ -7,7 +7,6 @@
     } else {
       $scope.editCompany = CompaniesSrv.getOneCompanyById($scope.editCompanyId, function (resp) {
         $scope.editCompany = angular.copy(resp);
-        $scope.editCompany.yearFoundation = $scope.editCompany.yearFoundation? new Date($scope.editCompany.yearFoundation).toLocaleDateString() : "";
       });
     }
 
@@ -27,7 +26,7 @@
             $scope.companies.push(resp)
           }
 
-          $scope.tryToSave = true;
+          $scope.tryToSave = false;
         });
 
         $scope.openCompanyForm()
