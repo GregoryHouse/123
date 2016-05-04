@@ -6,7 +6,8 @@
       saveUpdateUser: saveUpdateUser,
       deleteUser: deleteUser,
       getAllUsers: getAllUsers,
-      getOneUserById: getOneUserById
+      getOneUserById: getOneUserById,
+      uniqueMail: uniqueMail
     };
 
     function saveUpdateUser(editUser, callback) {
@@ -23,8 +24,12 @@
           type: editUser.type,
           mail: editUser.mail
         };
+
         if(editUser.id){
           user.id = editUser.id
+        }
+        if(typeof(editUser.birthDay) === "number"){
+          user.birthDay = editUser.birthDay
         }
 
         return $http.post('/api/users', user)
@@ -67,6 +72,22 @@
             callback(resp.data)
           }
           return resp.data;
+        })
+    }
+
+    function uniqueMail(email, id, callback){
+      var data = {
+        mail: email,
+        id: id
+      };
+
+      return $http.post('/api/users/mail', data)
+        .then(function success(resp) {
+          if (callback) {
+            callback(resp)
+          }
+        }, function error() {
+          return console.log('error');
         })
     }
 

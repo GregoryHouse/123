@@ -49,13 +49,13 @@
 
       <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-3" date-picker ng-model="editCompany.yearFoundation">
         <span>Year Foundation</span>
-        <input date-picker-input name="yearFoundation" size="20" placeholder="Year Foundation">
+        <input date-picker-input name="yearFoundation" size="20" placeholder="Year Foundation" readonly>
       </div>
 
       <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-2 companies-buttons">
 
         <button type="button" class="btn btn-success" ng-click="saveCompany(editCompanyForm, editCompany)"
-                ng-disabled="editCompanyForm.name.$dirty && editCompanyForm.name.$invalid || editCompanyForm.companyMail.$dirty && editCompanyForm.companyMail.$invalid">
+                ng-disabled="disabledSave || (editCompanyForm.$invalid && tryToSave)">
           Save
         </button>
 

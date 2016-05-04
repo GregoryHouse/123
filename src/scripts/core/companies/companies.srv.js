@@ -41,7 +41,6 @@
 
           return $http.post('/api/companies', company)
             .then(function success(resp) {
-              console.log('success', resp.data);
               if (callback) {
                 callback(resp.data)
               }

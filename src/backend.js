@@ -78,8 +78,6 @@
 
       $httpBackend.whenPOST('/api/companies').respond(function (method, url, data, headers) {
 
-        console.log(data)
-
         var company = JSON.parse(data);
         if (company.id) {
           for (var i = 0, l = companies.length; i < l; i++) {
@@ -134,6 +132,18 @@
         return [200, user];
       });
 
+      $httpBackend.whenPOST('/api/users/mail').respond(function (method, url, data, headers) {
+
+        var unique = JSON.parse(data);
+        var uniqueMail = true;
+        for (var i = 0, l = users.length; i < l; i++) {
+          if (users[i].mail === unique.mail && users[i].id !== unique.id) {
+            uniqueMail = false;
+          }
+        }
+
+        return [200, uniqueMail];
+      });
 
       $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {
 
@@ -150,13 +160,13 @@
                     for (var b = 0; b < companies[a].clients.length; b++) {
 
                       if (users[i].id === companies[a].clients[b].id) {
-                        companies[a].clients.splice(companies[a].clients.indexOf(companies[a].clients[b]),1)
+                        companies[a].clients.splice(companies[a].clients.indexOf(companies[a].clients[b]), 1)
                         break
                       }
                     }
                   }
 
-                  if (user.company.id === companies[a].id){
+                  if (user.company.id === companies[a].id) {
                     companies[a].clients.push({id: user.id})
                   }
                 }

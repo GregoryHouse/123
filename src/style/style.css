@@ -4,8 +4,8 @@ a:hover {
   color: purple;
 }
 
-a {
-  color: darkblue;
+a:active {
+  color: #5e001f;
 }
 
 /** User table and Form **/
@@ -222,4 +222,8 @@ input.button-close {
   padding: 0;
   border-radius: 0;
   border: 1px solid initial;
+}
+
+.newUser, .newCompany {
+  background-color: lavender;
 }

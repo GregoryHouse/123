@@ -34,7 +34,11 @@
       $scope.saveUser = function (form) {
         if (form.$valid) {
 
+          $scope.disabledSave = true;
+
           UsersSrv.saveUpdateUser($scope.editUser, function (resp) {
+
+            $scope.$emit('scroll-to-user', resp.id);
 
             if ($scope.editUser.id) {
               for (var i = 0; i < $scope.users.length; i++) {
@@ -46,9 +50,11 @@
             } else {
               $scope.users.push(resp)
             }
+
+            $scope.openUserForm();
+            $scope.disabledSave = false;
           });
 
-          $scope.openUserForm()
         }
         else {
           $scope.tryToSave = true;
@@ -59,13 +65,17 @@
         return form && form[formFild] && (form[formFild].$dirty || form[formFild].$touched || $scope.tryToSave) && form[formFild].$invalid;
       };
 
-      //$scope.isEmailUniqe = function(value, model){
-      //
-      //  //TODO
-      //  //if value unique model.setValide false
-      //
-      //  return true || false;
-      //}
+      $scope.isEmailUnique = function(value, model){
+
+        //var modelId = $scope.editUser.id ? $scope.editUser.id: "";
+
+        UsersSrv.uniqueMail(value, $scope.editUser.id, function(resp){
+          model.$setValidity('unique-email', resp.data);
+        });
+
+      };
+
+    //  ('email', model.Id || '', function(res){})
 
     }]);
 

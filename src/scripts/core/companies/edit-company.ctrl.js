@@ -13,7 +13,12 @@
     $scope.saveCompany = function (form, editCompany) {
 
       if (form.$valid) {
+
+        $scope.disabledSave = true;
+
         CompaniesSrv.saveUpdateCompany(editCompany, function (resp) {
+
+          $scope.$emit('scroll-to-company', resp.id);
 
           if (editCompany.id) {
             for (var i = 0; i < $scope.companies.length; i++) {
@@ -26,10 +31,9 @@
             $scope.companies.push(resp)
           }
 
-          $scope.tryToSave = false;
+          $scope.openCompanyForm();
+          $scope.disabledSave = false;
         });
-
-        $scope.openCompanyForm()
       }
       else {
         $scope.tryToSave = true;
