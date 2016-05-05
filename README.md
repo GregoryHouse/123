@@ -1,3 +1,3 @@
-npm install (or npm install gulp-> npm install),
+npm install,
 bower install,
 gulp serve.
