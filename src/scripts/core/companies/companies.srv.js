@@ -7,7 +7,8 @@
       saveUpdateCompany: saveUpdateCompany,
       deleteCompany: deleteCompany,
       getAllCompanies: getAllCompanies,
-      getOneCompanyById: getOneCompanyById
+      getOneCompanyById: getOneCompanyById,
+      isUniqueMail: isUniqueMail
     };
 
     function getAllUserByCompany(clients) {
@@ -40,7 +41,7 @@
           }
 
           return $http.post('/api/companies', company)
-            .then(function success(resp) {
+            .then(function (resp) {
               if (callback) {
                 callback(resp.data)
               }
@@ -53,7 +54,7 @@
       function deleteCompany(removeCompany, callback) {
 
         return $http.delete('/api/companies/' + removeCompany.id)
-          .then(function success(resp) {
+          .then(function (resp) {
             if (callback) {
               callback(resp.data)
             }
@@ -81,6 +82,22 @@
             return resp.data;
           })
       }
+
+    function isUniqueMail(email, id, callback){
+      var data = {
+        mail: email,
+        id: id
+      };
+
+      return $http.post('/api/companies/ismailunique', data)
+        .then(function (resp) {
+          if (callback) {
+            callback(resp)
+          }
+        }, function () {
+          return console.log('error');
+        })
+    }
 
       return CompaniesSrv;
     }

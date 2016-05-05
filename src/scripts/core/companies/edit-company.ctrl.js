@@ -10,15 +10,16 @@
       });
     }
 
-    $scope.saveCompany = function (form, editCompany) {
+    $scope.saveCompany = function (form) {
 
       if (form.$valid) {
 
         $scope.disabledSave = true;
+        var editCompany = $scope.editCompany;
 
         CompaniesSrv.saveUpdateCompany(editCompany, function (resp) {
 
-          $scope.$emit('scroll-to-company', resp.id);
+          $scope.$emit('scroll-to-new-element', resp.id);
 
           if (editCompany.id) {
             for (var i = 0; i < $scope.companies.length; i++) {
@@ -42,7 +43,15 @@
 
     $scope.isShowErrors = function (form, formFild) {
       return form && form[formFild] && (form[formFild].$dirty || form[formFild].$touched || $scope.tryToSave) && form[formFild].$invalid;
-    }
+    };
+
+    $scope.isEmailUnique = function(value, model){
+
+      CompaniesSrv.isUniqueMail(value, $scope.editCompany.id || '', function(resp){
+        model.$setValidity('unique-email', resp.data);
+      });
+
+    };
 
   }]);
 

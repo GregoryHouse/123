@@ -1,6 +1,7 @@
 "use strict";
 (function () {
-  angular.module('myApp.Users').controller("myApp.Users.usersCtrl", ['$scope', 'UsersSrv', function ($scope, UsersSrv) {
+  angular.module('myApp.Users').controller("myApp.Users.usersCtrl", ['$scope', 'UsersSrv',
+    function ($scope, UsersSrv) {
 
     $scope.editUserId = '';
     $scope.query = '';
@@ -36,12 +37,9 @@
     $scope.filterUsers = function (user) {
 
       var query = $scope.query.toLowerCase(),
-        fullName = user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase() || "" + ' ' + user.mail.toLowerCase();
+        fullName = user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase() + ' ' + user.mail.toLowerCase();
 
-      if (fullName.indexOf(query) !== -1) {
-        return true;
-      }
-      return false;
+      return fullName.indexOf(query) !== -1;
     };
 
   }])

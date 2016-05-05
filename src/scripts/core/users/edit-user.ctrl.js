@@ -38,7 +38,7 @@
 
           UsersSrv.saveUpdateUser($scope.editUser, function (resp) {
 
-            $scope.$emit('scroll-to-user', resp.id);
+            $scope.$emit('scroll-to-new-element', resp.id);
 
             if ($scope.editUser.id) {
               for (var i = 0; i < $scope.users.length; i++) {
@@ -67,15 +67,11 @@
 
       $scope.isEmailUnique = function(value, model){
 
-        //var modelId = $scope.editUser.id ? $scope.editUser.id: "";
-
-        UsersSrv.uniqueMail(value, $scope.editUser.id, function(resp){
+        UsersSrv.isUniqueMail(value, $scope.editUser.id || '', function(resp){
           model.$setValidity('unique-email', resp.data);
         });
 
       };
-
-    //  ('email', model.Id || '', function(res){})
 
     }]);
 

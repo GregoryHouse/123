@@ -94,6 +94,18 @@
         return [201, company];
       });
 
+      $httpBackend.whenPOST('/api/companies/ismailunique').respond(function (method, url, data, headers) {
+
+        var data = JSON.parse(data);
+
+        for (var i = 0, l = companies.length; i < l; i++) {
+          if (companies[i].companyMail === data.mail && (data.id && (companies[i].id !== data.id))) {
+            return [200, false];
+          }
+        }
+
+        return [200, true];
+      });
 
       $httpBackend.whenDELETE(/^\/api\/companies\/\d+-\d+-\d+-\d+$/).respond(function (method, url, data, headers) {
         var regex = /^\/api\/companies\/(\d+-\d+-\d+-\d+)/g;
@@ -132,17 +144,17 @@
         return [200, user];
       });
 
-      $httpBackend.whenPOST('/api/users/mail').respond(function (method, url, data, headers) {
+      $httpBackend.whenPOST('/api/users/ismailunique').respond(function (method, url, data, headers) {
 
-        var unique = JSON.parse(data);
-        var uniqueMail = true;
+        var data = JSON.parse(data);
+
         for (var i = 0, l = users.length; i < l; i++) {
-          if (users[i].mail === unique.mail && users[i].id !== unique.id) {
-            uniqueMail = false;
+          if (users[i].mail === data.mail && (users[i].id !== data.id)) {
+            return [200, false];
           }
         }
 
-        return [200, uniqueMail];
+        return [200, true];
       });
 
       $httpBackend.whenPOST('/api/users').respond(function (method, url, data, headers) {

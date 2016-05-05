@@ -1,6 +1,7 @@
 "use strict";
 (function () {
-  angular.module('myApp.Companies').controller("myApp.Companies.companiesCtrl", ['$scope', 'CompaniesSrv', function ($scope, CompaniesSrv) {
+  angular.module('myApp.Companies').controller("myApp.Companies.companiesCtrl", ['$scope', 'CompaniesSrv',
+    function ($scope, CompaniesSrv) {
 
     $scope.query = '';
     $scope.editCompanyId = '';
@@ -35,10 +36,8 @@
       var query = $scope.query.toLowerCase(),
         fullName = company.name.toLowerCase() + ' ' + company.addressCompany.toLowerCase() + ' ' + company.companyMail.toLowerCase();
 
-      if (fullName.indexOf(query) !== -1) {
-        return true;
-      }
-      return false;
+      return fullName.indexOf(query) !== -1;
+
     };
 
   }]);

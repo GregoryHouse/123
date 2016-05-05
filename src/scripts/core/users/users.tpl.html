@@ -1,5 +1,5 @@
 <div>
-  <ul users-scroll>
+  <ul scroll-to>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -38,7 +38,7 @@
 
     <li class="user-content" ng-class="{'edit': editUserId === user.id}" ng-controller="myApp.Users.userCtrl"
         ng-repeat="user in users  | orderBy: orderUser.predicate: orderUser.reverse | filter: filterUsers"
-        user-id="{{ user.id }}">
+        st-element="{{ user.id }}">
 
       <div ng-include="'scripts/core/users/edit-user.tpl.html'" ng-if="editUserId === user.id"></div>
 

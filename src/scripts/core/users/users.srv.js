@@ -7,7 +7,7 @@
       deleteUser: deleteUser,
       getAllUsers: getAllUsers,
       getOneUserById: getOneUserById,
-      uniqueMail: uniqueMail
+      isUniqueMail: isUniqueMail
     };
 
     function saveUpdateUser(editUser, callback) {
@@ -33,7 +33,7 @@
         }
 
         return $http.post('/api/users', user)
-          .then(function success(resp) {
+          .then(function (resp) {
             if (callback) {
               callback(resp.data)
             }
@@ -46,7 +46,7 @@
     function deleteUser(userId, callback) {
 
       return $http.delete('/api/users/' + userId)
-        .then(function success(resp) {
+        .then(function (resp) {
           if(callback){
             callback(resp.data)
           }
@@ -75,18 +75,18 @@
         })
     }
 
-    function uniqueMail(email, id, callback){
+    function isUniqueMail(email, id, callback){
       var data = {
         mail: email,
         id: id
       };
 
-      return $http.post('/api/users/mail', data)
-        .then(function success(resp) {
+      return $http.post('/api/users/ismailunique', data)
+        .then(function (resp) {
           if (callback) {
             callback(resp)
           }
-        }, function error() {
+        }, function () {
           return console.log('error');
         })
     }

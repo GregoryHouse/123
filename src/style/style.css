@@ -48,7 +48,7 @@ div.row.edit-form {
     margin: 5px 0 5px 0;
     text-align: center;
   }
-  
+
   .col-xs-6 {
     text-align: left;
     margin: 5px 0 5px 0;
@@ -236,6 +236,6 @@ input.button-close {
   border: 1px solid initial;
 }
 
-.newUser, .newCompany {
+.new-element {
   background-color: lavender;
 }
